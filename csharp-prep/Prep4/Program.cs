@@ -21,8 +21,14 @@ class Program
          //}
          numbers.RemoveAt(numbers.Count -1);
 
-         int sum = numbers.Sum();
+         int sum = 0;
+         foreach (int num in numbers)
+         {
+            sum+= num;
+         }
+         //int sum = numbers.Sum();
          Console.WriteLine("The sum is: " + sum);
+         
          float sum1 = sum;
          float average = sum1 / numbers.Count;
          Console.WriteLine("The average is: " + average);
