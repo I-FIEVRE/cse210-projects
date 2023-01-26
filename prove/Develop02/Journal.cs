@@ -27,7 +27,7 @@ public class Journal
                 string date = entry._date;
                 string prompt = entry._prompt;
                 string response = entry._response;
-                outputFile.WriteLine($" Date: {date} - Prompt: {prompt} \n {response}");
+                outputFile.WriteLine($" \n Date: {date} - Prompt: {prompt} \n {response}");
             }
         }
     } 
@@ -44,7 +44,7 @@ public class Journal
                     string quote = entry._quote;
                     string prompt = entry._prompt;
                     string response = entry._response;
-                    outputFile.WriteLine($" Quote: {quote} \n Date: {date} - Prompt: {prompt} \n {response}");
+                    outputFile.WriteLine($" \n Quote: {quote} \n Date: {date} - Prompt: {prompt} \n {response}");
                 }
             }
         } 
