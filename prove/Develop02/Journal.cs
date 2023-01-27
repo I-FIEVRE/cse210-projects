@@ -15,6 +15,7 @@ public class Journal
             entry.Display();
         }
     }
+    
     public string _fileName;
     public void SaveJournal()
     // save the person's journal to a file.text (_fileName) by
