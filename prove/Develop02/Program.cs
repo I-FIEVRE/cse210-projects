@@ -48,6 +48,8 @@ class Program
                 Console.WriteLine("What is the filename? ");
                 input = Console.ReadLine();
                 string userFileName = input;
+
+                myJournal = new Journal();      //create a new journal with the data saved inside the _filename
                 myJournal._fileName = userFileName;
                 myJournal.LoadJournal();
                 

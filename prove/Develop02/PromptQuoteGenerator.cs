@@ -29,15 +29,15 @@ public class PromptQuoteGenerator
 
           // add different quotes to the list of strings _quotes
           _quotes.Add(" Ezra Taft Benson: When you choose to follow Christ, you choose to be changed. ");
-          _quotes.Add(" Jeffrey R. Holland: I urge you to be peacemakers. To love peace. \n To seek peace. To create peace. ");
+          _quotes.Add(" Jeffrey R. Holland: I urge you to be peacemakers. To love peace. To seek peace. To create peace. ");
           _quotes.Add(" Linda K. Burton: Whe we work together in love and unity, we can expect heaven's help.");
-          _quotes.Add(" Russell M. Nelson: When you know your life is being directed by God, \n regardless of the challenges and disappointments that may and \n will come, you will feel joy and peace. ");
+          _quotes.Add(" Russell M. Nelson: When you know your life is being directed by God, regardless of the challenges and disappointments that may and will come, you will feel joy and peace. ");
           _quotes.Add(" Dieter F. Uchtdorf: He sees what we do not see. Trust in Him.");
-          _quotes.Add(" Thomas S. Monson: For maximum happiness, peace, and contentment, \n may we choose a positive attitude.");
-          _quotes.Add(" David A. Bednar: Ordinary people who faithfully, diligently and \n consistently do simple things that are right before God \n will bring forth extraordinary results. ");
-          _quotes.Add(" Dieter F. Uchtdorf: Even when you are not at fault - \n perhaps especially when you arre not at fault - \n let LOVE conquer pride.");
-          _quotes.Add(" Thomas S. Monson: Remember that  the Lord will shape \n to bearthe burden placed upon it.");
-          _quotes.Add(" Joseph B: Wirthlin: We are faced with a choice. \n We can trust in our own strength, or we can \n journey to higher ground and come unto Christ.");
+          _quotes.Add(" Thomas S. Monson: For maximum happiness, peace, and contentment, may we choose a positive attitude.");
+          _quotes.Add(" David A. Bednar: Ordinary people who faithfully, diligently and consistently do simple things that are right before God will bring forth extraordinary results. ");
+          _quotes.Add(" Dieter F. Uchtdorf: Even when you are not at fault _ perhaps especially when you arre not at fault _ let LOVE conquer pride.");
+          _quotes.Add(" Thomas S. Monson: Remember that  the Lord will shape to bearthe burden placed upon it.");
+          _quotes.Add(" Joseph B: Wirthlin: We are faced with a choice. We can trust in our own strength, or we can journey to higher ground and come unto Christ.");
 
           int indexQuote = random.Next(_quotes.Count);
           _randomQuote = _quotes[indexQuote]; // _randomQuote is the quote chosen randomly         
