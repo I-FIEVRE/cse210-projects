@@ -53,6 +53,7 @@ public class BreathingActivity : Activity
     {
         DisplayStartingMessage();
         DisplayMessage(); 
-        DisplayEndingMessage();   
+        DisplayEndingMessage();
+        SaveActivity();   
     }
 }

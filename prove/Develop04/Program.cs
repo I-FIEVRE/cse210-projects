@@ -6,7 +6,6 @@ class Program
     {
        
         string userChoice = "";
-        
         int duration = 0;
         string breathing = "This activity will help you to relax by walking your through breathing in and out slowly. \nClear your mind and focus on your breathing.";
         string reflecting = "This activity will help you to reflect on times in your life when you have shown strength and resilience.\nThis will help you recognize the power you have and how you can use it in other aspects of your life.";
@@ -36,7 +35,7 @@ class Program
             {
                 a3.RunActivity();
             }
-            else if (userChoice == "4")     //quit
+            else if (userChoice == "4")     //quit        
             {
                 Console.WriteLine("Good Bye!\n"); 
             }

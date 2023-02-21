@@ -5,14 +5,13 @@ public class ListingActivity : Activity
 {
     private List<string> _listOfQuestions = new List<string>() {"Who are people that you appreciate? ", "What are personal strengths of yours? ", "Who are people that you have helped this week?", 
     "When have you felt the Holy Ghost this month? ", "Who are some of your personal heroes? "};
-     
+
     public ListingActivity(string activityName, string description, int duration): base(activityName, description, duration)
     {
     }
+
     public string GetRandomQuestion()
     {
-        //List<string> _listOfQuestions = new List<string>() {"Who are people that you appreciate? ", "What are personal strengths of yours? ", "Who are people that you have helped this week?", 
-       // "When have you felt the Holy Ghost this month? ", "Who are some of your personal heroes? "};
         Random rnd = new Random();
         int rdIndex = rnd.Next(_listOfQuestions.Count);
         string question = _listOfQuestions[rdIndex];
@@ -46,16 +45,18 @@ public class ListingActivity : Activity
         {
             GetAnswer();
             count++;
-            currentTime = DateTime.Now;
+            currentTime = DateTime.Now;   
         }
         //dispaly the number of items
         Console.WriteLine($"\nYou listed {count} items!");
     }
+
     public void RunActivity()
     {
         DisplayStartingMessage();
         DisplayQuestion();
         DisplayNumberOfItems();
         DisplayEndingMessage();
+        SaveActivity();
     }
 }

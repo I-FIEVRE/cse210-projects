@@ -93,7 +93,7 @@ public class ReflectingActivity : Activity
             }
             else
             {
-                while (listPromptQuestions.Contains(quest) == true)     //to have a question different
+                while (listPromptQuestions.Contains(quest) == true)     //to have a different question
                 {
                     quest = GetRandomQuestion();
                 }
@@ -111,5 +111,6 @@ public class ReflectingActivity : Activity
         DisplayStartingMessage();
         DisplayQuestions();
         DisplayEndingMessage();
+        SaveActivity();
     }
 }

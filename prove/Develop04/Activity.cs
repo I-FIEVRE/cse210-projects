@@ -7,8 +7,8 @@ public class Activity
     private string _description;
     private int _duration;
 
+    private List<Activity> _entriesOfActivities = new List<Activity>();     //loading and saving 
    
-
     public Activity(string activityName, string description, int duration)
     {
         _activityName = activityName;
@@ -72,15 +72,29 @@ public class Activity
         }
     }
 
-
-
-    public void DisplayStartingMessage()
+    public void DisplayStartingMessage()        //display the starting message and load if the user . 
     {
+        //first part of starting message
         Console.WriteLine($"\nWelcome to the {_activityName}. \n\n{_description} \n\nHow long, in seconds, would you like for your session? ");
         string input = Console.ReadLine();
         int duration = int.Parse(input);
+
         SetDuration(duration);
+        DateTime theCurrentTime = DateTime.Now;
+        string dateText = theCurrentTime.ToShortDateString();
+        Activity activity = new Activity(_activityName, _description, _duration);
+
+        //change the descrition with the current date (loading and saving)
+        activity._description = dateText;
+        _entriesOfActivities.Add(activity);
+
+        //calls the LoadActivities method
+        LoadActivities();
+
+        PauseSpinnerShown(500, 3);
         Console.Clear();
+
+        //end of starting message
         Console.WriteLine("Get Ready...");
         PauseSpinnerShown(500, 3);
         Console.WriteLine(" ");
@@ -94,4 +108,61 @@ public class Activity
         PauseSpinnerShown(500, 3);
         Console.Clear();
     }
+
+    public void LoadActivities()
+    {
+        Console.WriteLine("Do you want to load?(Y or N): ");
+        string userQuoteChoice = Console.ReadLine();
+        if (userQuoteChoice.ToUpper() == "Y")
+        {    
+            Console.WriteLine("What is the filename? ");
+            string userFileName = Console.ReadLine();
+            string[] lines = System.IO.File.ReadAllLines(userFileName);
+            int i = 1;
+            foreach (string line in lines)
+            {
+                string[] parts = line.Split(" : ");
+                string dat = parts[0];
+                string act = parts[1];
+                int dur = int.Parse(parts[2]);
+                Activity activity = new Activity(act, dat, dur);
+                _entriesOfActivities.Add(activity);
+                Console.WriteLine($"{dat} the {act} was completed in {dur} seconds.");
+            }
+                i = i + 1;
+        }
+    }  
+
+    public void SaveActivity()
+    {
+        DateTime theCurrentTime = DateTime.Now;
+        string dateText = theCurrentTime.ToShortDateString();
+        Console.WriteLine("Do you want to save this activity?(Y or N): ");
+        string userQuoteChoice = Console.ReadLine();
+        if (userQuoteChoice.ToUpper() == "Y")
+        {
+            Console.WriteLine("What is the filename? ");
+            string userFileName = Console.ReadLine();
+            {
+                using (StreamWriter outputFile = new StreamWriter(userFileName))
+                {
+                    foreach (Activity activity in _entriesOfActivities)
+                    {
+                        string activityName = activity._activityName;
+                        int duration = activity._duration;
+                        string date = activity._description;
+                        if (date != dateText)
+                        {
+                            outputFile.Write($"{date} : {activityName} : {duration} \n");
+                        }
+                        else
+                        {
+                            outputFile.Write($"{dateText} : {activityName} : {duration} \n");
+                        }
+                    }   
+                }              
+            }     
+        }           
+    }
+      
 }
