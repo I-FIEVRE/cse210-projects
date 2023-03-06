@@ -5,7 +5,6 @@ public abstract class Goal
     private string _goalName;
     private string _description;
     private int _points;
-
     private int _score;
     public Goal(string goalName, string description, int points)
     {
@@ -60,7 +59,7 @@ public abstract class Goal
 
     public void MessageGoal(string typeOfGoal)
     {
-        Console.WriteLine("What is the name of your goal? ");
+        Console.WriteLine($"What is the name of your  {typeOfGoal}? ");
         _goalName = Console.ReadLine();
         SetGoalName(_goalName);
         _goalName = GetGoalName();
@@ -70,7 +69,7 @@ public abstract class Goal
         SetDescription(_description);
         _description = GetDescription();
 
-        Console.WriteLine("What is the amount of points associated with this Goal? ");
+        Console.WriteLine($"What is the amount of points associated with this  {typeOfGoal}? ");
         _points = int.Parse(Console.ReadLine());
         SetPoints(_points); 
         _points = GetPoints(); 

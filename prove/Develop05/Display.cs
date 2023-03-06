@@ -55,13 +55,24 @@ public class Display
             {
                 Console.WriteLine($"{i}. [ ] {items[0]} ({items[1]})");
             }
+             else if (nGoal == "Bad habit")
+            {
+                if (items[4] == items[5])
+                {
+                    Console.WriteLine($"{i}. [X] {items[0]} ({items[1]}) -- Currently completed: {items[5]}/{items[4]}");
+                }
+                else 
+                {
+                    Console.WriteLine($"{i}. [ ] {items[0]} ({items[1]}) -- Currently completed: {items[5]}/{items[4]}");
+                }       
+            }
             i++;
         }   
     }
 
     public void DisplayListOfGoals2(List<string> entriesOfGoals)
     {
-        Console.WriteLine("The goals are:");
+        Console.WriteLine("\nThe goals are:");
         int i = 1;
         string lGoal = "";
         string nGoal = "";
@@ -80,6 +91,10 @@ public class Display
                 Console.WriteLine($"{i}. {items[0]}");
             }
             else if (nGoal == "Eternal goal")
+            {
+                Console.WriteLine($"{i}.{items[0]}");
+            }
+            else if (nGoal == "Bad habit")
             {
                 Console.WriteLine($"{i}.{items[0]}");
             }

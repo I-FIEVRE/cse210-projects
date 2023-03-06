@@ -55,6 +55,35 @@ public class CheckListGoal : Goal
         _bonus = GetBonus(); 
     }
 
+    public void PauseCountdownShown(int j)
+    {
+        for (int i = j; i > 0; i--)
+        {
+            Console.Write(i);
+            Thread.Sleep(1000);
+            Console.Write("\b \b");
+        }
+    }
+
+    public void PauseSpinnerShown(int j, int k)
+    {
+        for (int i = 0; i < k; i++)
+        {
+        Console.Write("|");
+        Thread.Sleep(j);
+        Console.Write("\b \b"); // Erase the | character
+        Console.Write("/"); // Replace it with the / character
+        Thread.Sleep(j);
+        Console.Write("\b \b"); // Erase the / character
+        Console.Write("—"); // Replace it with the — character
+        Thread.Sleep(j);
+        Console.Write("\b \b"); // Erase the — character
+        Console.Write("\\"); // Replace it with the \ character
+        Thread.Sleep(j);
+        Console.Write("\b \b"); // Erase the \ character
+        }
+    }
+
     public override string CreateGoal()
     {
         string sgoal = "";
@@ -73,20 +102,35 @@ public class CheckListGoal : Goal
         GetNumberOfTimes();
         
         sGoal = $"Checklist goal: {GetGoalName()}, {GetDescription()}, {GetPoints().ToString()}, {GetBonus().ToString()}, {GetTimes().ToString()}, {GetNumberOfTimes().ToString()}";
+        Console.WriteLine($"\nCongratulations! You have earned {GetPoints().ToString()} points."); 
+        
         if (GetNumberOfTimes() < GetTimes())
-        {
-            Console.WriteLine($"Congratulations! You have earned {GetPoints().ToString()} points.");
-              
+        { 
+            // new score
             SetScore(sc + GetPoints());
-            Console.WriteLine($"You now have {GetScore()} points.\n\n");   
-        }
+            Console.WriteLine($"You now have {GetScore()} points.");
+            Thread.Sleep(2000); 
+            Console.Clear();
+        }   
         else
         {
-            Console.WriteLine($"Congratulations! You have earned {GetPoints().ToString()} points.");
-            Console.WriteLine($"Congratulations! You have earned {GetBonus().ToString()} points of bonus.");
-    
+            Thread.Sleep(2000); 
+            Console.Clear();
+            // special congratulations for the bonus 
+            Console.WriteLine($"Congratulations!\n");
+            Console.Write("    ");
+            PauseSpinnerShown(100, 5);
+            Console.Write("    ");
+            PauseSpinnerShown(100, 5);
+            Console.Write("    ");
+            PauseSpinnerShown(100, 5);
+            Console.WriteLine($" \n--- You have earned {GetBonus().ToString()} points of bonus. ---\n");
+            PauseCountdownShown(5);
+            // new score
             SetScore(sc + GetPoints() + GetBonus());
-            Console.WriteLine($"You now have {GetScore()} points.\n\n");    
+            Console.WriteLine($"You now have {GetScore()} points."); 
+            Thread.Sleep(2000); 
+            Console.Clear();   
         }
        return sGoal; 
     }   
