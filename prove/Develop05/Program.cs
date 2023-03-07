@@ -1,9 +1,9 @@
 using System;
 
 // Creativity :
-//class named BadHabit for bad habits with the choice of the points lost and of the malus after a number of times chosen by the user
-//special congratulations for the bonus 
-//little change in the design
+//Create a class named BadHabit for bad habits with the choice of the points lost and of the malus after a number of times chosen by the user
+//Create a special congratulations for the bonus 
+//little changes in the output design
 class Program
 {   
     static void Main(string[] args)
