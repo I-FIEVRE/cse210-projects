@@ -29,33 +29,18 @@ public class Display
             lGoal = GetGoalDetailPart(goal);
             string[] items = lGoal.Split(", ");
             
-            if (nGoal == "Simple goal")
+            if ((nGoal == "Simple goal") || (nGoal == "Eternal goal"))
             {
-                if (items[3] == "True")
+                if ((nGoal == "Simple goal") && (items[3] == "True"))
                 {
                     Console.WriteLine($"{i}. [X] {items[0]} ({items[1]})");
                 }
-                else if (items[3] == "False")
+                else
                 {
                     Console.WriteLine($"{i}. [ ] {items[0]} ({items[1]})");
                 }   
             }
-            else if (nGoal == "Checklist goal")
-            {
-                if (items[4] == items[5])
-                {
-                    Console.WriteLine($"{i}. [X] {items[0]} ({items[1]}) -- Currently completed: {items[5]}/{items[4]}");
-                }
-                else 
-                {
-                    Console.WriteLine($"{i}. [ ] {items[0]} ({items[1]}) -- Currently completed: {items[5]}/{items[4]}");
-                }       
-            }
-            else if (nGoal == "Eternal goal")
-            {
-                Console.WriteLine($"{i}. [ ] {items[0]} ({items[1]})");
-            }
-             else if (nGoal == "Bad habit")
+            else if ((nGoal == "Checklist goal") || (nGoal == "Bad habit"))
             {
                 if (items[4] == items[5])
                 {
@@ -75,28 +60,16 @@ public class Display
         Console.WriteLine("\nThe goals are:");
         int i = 1;
         string lGoal = "";
-        string nGoal = "";
+        string nGoal = ""; 
         foreach (string goal in entriesOfGoals)
         {
             nGoal = GetKindGoalPart(goal);
             lGoal = GetGoalDetailPart(goal);
             string[] items = lGoal.Split(", ");
             
-            if (nGoal == "Simple goal")
+            if (nGoal == "Simple goal" || nGoal == "Checklist goal" || nGoal == "Eternal goal" || nGoal == "Bad habit")
             {
                 Console.WriteLine($"{i}. {items[0]}");
-            }
-            else if (nGoal == "Checklist goal")
-            {
-                Console.WriteLine($"{i}. {items[0]}");
-            }
-            else if (nGoal == "Eternal goal")
-            {
-                Console.WriteLine($"{i}.{items[0]}");
-            }
-            else if (nGoal == "Bad habit")
-            {
-                Console.WriteLine($"{i}.{items[0]}");
             }
             i++;
         }   

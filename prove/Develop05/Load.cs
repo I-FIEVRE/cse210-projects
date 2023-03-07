@@ -35,6 +35,14 @@ public class Load
                     string stringGoal = $"Eternal goal: {items[0]}, {items[1]}, {items[2]}";
                     entriesOfGoals.Add(stringGoal);
                 }
+                else if (nGoal == "Bad habit")
+                {
+                    string lGoal = d.GetGoalDetailPart(line);
+                    string[] items = lGoal.Split(", ");
+                    CheckListGoal sGoal = new CheckListGoal(items[0], items[1], int.Parse(items[2]), int.Parse(items[4]), int.Parse(items[3]), int.Parse(items[5]));
+                    string stringGoal = $"Bad habit: {items[0]}, {items[1]}, {items[2]}, {items[3]}, {items[4]}, {items[5]}";
+                    entriesOfGoals.Add(stringGoal);
+                }
             }
         i++;
     }
