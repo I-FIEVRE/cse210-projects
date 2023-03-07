@@ -91,8 +91,8 @@ public class BadHabit : Goal
             SetScore(sc - GetPoints() - GetMalus());
             Console.WriteLine($"You now have {GetScore()} points.");
             Thread.Sleep(2000);
-            Console.WriteLine($"Try to choose better next time.");
-            Thread.Sleep(2000);
+            Console.WriteLine($"Think about what you can do to choose better next time.");
+            Thread.Sleep(3000);
             Console.Clear();
         }
         return sGoal;
