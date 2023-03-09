@@ -2,7 +2,6 @@ using System;
 
 public class Save
 {
-
     public void SaveGoals(List<string> entriesOfGoals, int score)
     {
         Console.WriteLine("What is the filename? ");
