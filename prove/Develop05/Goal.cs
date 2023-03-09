@@ -56,7 +56,7 @@ public abstract class Goal
     
     public abstract string CreateGoal();
     public abstract string RecordEvent(int score);
-
+    
     public void MessageGoal(string typeOfGoal)
     {
         Console.WriteLine($"What is the name of your {typeOfGoal}? ");

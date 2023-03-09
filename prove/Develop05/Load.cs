@@ -6,45 +6,35 @@ public class Load
     {    
         string[] lines = System.IO.File.ReadAllLines(userFileName);
         int i = 1;            
-            foreach (string line in lines)
+        foreach (string line in lines)
+        {
+            if (i > 1)
             {
                 Display d = new Display();
                 string nGoal = d.GetKindGoalPart(line);
-
+                string lGoal = d.GetGoalDetailPart(line);
+                string stringGoal = $"{nGoal}: {lGoal}";
+                entriesOfGoals.Add(stringGoal);  
+                string[] items = lGoal.Split(", ");
                 if (nGoal == "Simple goal")
-                {
-                    string lGoal = d.GetGoalDetailPart(line);
-                    string[] items = lGoal.Split(", ");    
-                    SimpleGoal sGoal = new SimpleGoal(items[0], items[1], int.Parse(items[2]));
-                    string stringGoal = $"Simple goal: {items[0]}, {items[1]}, {items[2]}, {items[3]}";
-                    entriesOfGoals.Add(stringGoal);    
+                { 
+                    SimpleGoal sGoal = new SimpleGoal(items[0], items[1], int.Parse(items[2]));  
                 }
                 else if (nGoal == "Checklist goal")
                 {
-                    string lGoal = d.GetGoalDetailPart(line);
-                    string[] items = lGoal.Split(", ");
                     CheckListGoal sGoal = new CheckListGoal(items[0], items[1], int.Parse(items[2]), int.Parse(items[4]), int.Parse(items[3]), int.Parse(items[5]));
-                    string stringGoal = $"Checklist goal: {items[0]}, {items[1]}, {items[2]}, {items[3]}, {items[4]}, {items[5]}";
-                    entriesOfGoals.Add(stringGoal);
                 }
                 else if (nGoal == "Eternal goal")
-                {
-                    string lGoal = d.GetGoalDetailPart(line);
-                    string[] items = lGoal.Split(", ");
-                    EternalGoal sGoal = new EternalGoal(items[0], items[1], int.Parse(items[2]));
-                    string stringGoal = $"Eternal goal: {items[0]}, {items[1]}, {items[2]}";
-                    entriesOfGoals.Add(stringGoal);
+                {         
+                    EternalGoal sGoal = new EternalGoal(items[0], items[1], int.Parse(items[2]));  
                 }
                 else if (nGoal == "Bad habit")
                 {
-                    string lGoal = d.GetGoalDetailPart(line);
-                    string[] items = lGoal.Split(", ");
                     CheckListGoal sGoal = new CheckListGoal(items[0], items[1], int.Parse(items[2]), int.Parse(items[4]), int.Parse(items[3]), int.Parse(items[5]));
-                    string stringGoal = $"Bad habit: {items[0]}, {items[1]}, {items[2]}, {items[3]}, {items[4]}, {items[5]}";
-                    entriesOfGoals.Add(stringGoal);
                 }
             }
-        i++;
+            i++;
+        }
     }
 
     public int ReturnScore(List<string> entriesOfGoals,string userFileName)

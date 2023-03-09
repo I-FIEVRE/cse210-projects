@@ -124,7 +124,7 @@ public class CheckListGoal : Goal
             PauseSpinnerShown(100, 5);
             Console.Write("    ");
             PauseSpinnerShown(100, 5);
-            Console.WriteLine($" \n--- You have earned {GetBonus().ToString()} points of bonus. ---\n");
+            Console.WriteLine($" \n--- You have earned {GetBonus().ToString()} points of bonus! ---\n");
             PauseCountdownShown(5);
             // new score
             SetScore(sc + GetPoints() + GetBonus());

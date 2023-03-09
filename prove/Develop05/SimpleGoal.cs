@@ -6,18 +6,17 @@ public class SimpleGoal : Goal
     {
     }
     
+    public bool IsComplete()
+    {
+        return true;
+    }
+
     public override string CreateGoal()
     {
         SimpleGoal goal = new SimpleGoal(GetGoalName(), GetDescription(), GetPoints());
         string sGoal = "";
         sGoal = $"Simple goal: {GetGoalName()}, {GetDescription()}, {GetPoints().ToString()}, {!IsComplete()}";
         return sGoal;
-        //Console.WriteLine($"{sgoal}");
-    }
-   
-    public bool IsComplete()
-    {
-        return true;
     }
 
     public override string RecordEvent(int sc)
