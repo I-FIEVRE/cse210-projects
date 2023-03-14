@@ -2,7 +2,7 @@ using System;
 
 public class Load
 {
-    public virtual void LoadGoals(List<string> entriesOfGoals, string userFileName)
+    public void LoadGoals(List<string> entriesOfGoals, string userFileName)
     {    
         string[] lines = System.IO.File.ReadAllLines(userFileName);
         int i = 1;            
