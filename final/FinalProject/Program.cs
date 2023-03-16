@@ -22,14 +22,8 @@ class Program
 
         do // loop to pursue until 6 is given by the user
         { 
-            // menu appears each time 
-            
-            Console.WriteLine($"\nTotal expenses: ${totalExpense}");
-            Console.WriteLine($"Total incomes: ${totalIncome}");
-            Console.WriteLine($"Disposable Incomes: ${totalIncome - totalExpense}\n");
-            Console.WriteLine($"\nCeiling of Discretionary expense: ${ceiling}");
-            Console.WriteLine($"\nTotal of Discretionary expense: ${d.TotalAmountType("Discretionary Expense", listOfEntries)}");
             stringOfTotal = $"{totalIncome}, {totalExpense}, {ceiling}";
+            // menu appears each time 
             Console.WriteLine("\nMenu Options: \n 1. New Expense \n 2. New Income \n 3. Display the Budget \n 4. Save Budget \n 5. Load Budget \n 6. Change an amount \n 7. Quit");
             Console.WriteLine("Select a choice from the menu: ");
             // the choice of the user 
@@ -39,7 +33,7 @@ class Program
             {
                 string user2Choice = "";
                 // menu
-                Console.WriteLine("\nThe types of expense are:\n 1. Fixed Expense \n 2. Flexible Expense \n 3. Discretionary Expense \n 4. Quit");
+                Console.WriteLine("\nThe types of expense are:\n 1. Fixed Expense \n 2. Flexible Expense \n 3. Discretionary Expense \n 4. Return to main menu");
                 Console.WriteLine("Wich type of expense do you like to create? ");
                 // the choice of the user 
                 user2Choice = Console.ReadLine();
@@ -96,7 +90,7 @@ class Program
             {    
                 string user3Choice = "";
                 // menu
-                Console.WriteLine("\nThe types of income are:\n 1. Fixed Income \n 2. Exceptional Income \n 3. Quit");
+                Console.WriteLine("\nThe types of income are:\n 1. Fixed Income \n 2. Exceptional Income \n 3. Return to main menu");
                 Console.WriteLine("Wich type of income do you like to create? ");
                 // the choice of the user 
                 user3Choice = Console.ReadLine();
@@ -106,7 +100,7 @@ class Program
                     totalIncome = i.GetTotalIncome();
                     Console.WriteLine("");
                 } 
-                else if (userChoice == "2")     //New Exceptional Income
+                else if (user3Choice == "2")     //New Exceptional Income
                 {
                     listOfEntries.Add(i1.NewEntry(totalIncome));
                     totalIncome = i1.GetTotalIncome();
@@ -118,27 +112,88 @@ class Program
             }
             else if (userChoice == "3")     // Display the Budget
             {
-                d.DisplayListOfType("Fixed Income", listOfEntries);
-                Console.WriteLine("");
-                d.DisplayListOfType("Exceptional Income", listOfEntries);
-                Console.WriteLine("");
-                List<string> cat = new List<string>();
-                Console.WriteLine("The Fixed Expenses are:");
-                
-                foreach(string category in listOfCategories)
+                string user5Choice = "";
+                //menu
+                Console.WriteLine("\nThe types of display are:\n 1. All the budget \n 2. All the income \n 3. All the Expenses \n 4. Resume \n 5. Return to main menu");
+                Console.WriteLine("Wich type of display do you want? ");
+                // the choice of the user 
+                user5Choice = Console.ReadLine();
+                if (user5Choice == "1")     //All the budget
                 {
-                    if (cat.Contains(category) == false )
+                    Console.Clear();
+                    Console.WriteLine("\nYour Budget is: ");
+                    d.DisplayListOfType("Fixed Income", listOfEntries);
+                    Console.WriteLine("");
+                    d.DisplayListOfType("Exceptional Income", listOfEntries);
+                    Console.WriteLine("");
+                    List<string> cat = new List<string>();
+                    Console.WriteLine("The Fixed Expenses are:");
+                    foreach(string category in listOfCategories)
                     {
-                        d.DisplayListOfCategory(listOfEntries, category, totalFixedExpense);
-                        cat.Add(category);
-                    } 
+                        if (cat.Contains(category) == false )
+                        {
+                            d.DisplayListOfCategory(listOfEntries, category, totalFixedExpense);
+                            cat.Add(category);
+                        } 
+                    }
+                    d.DisplayTotalFixedExpense(listOfEntries);
+                    Console.WriteLine("");
+                    d.DisplayListOfType("Flexible Expense", listOfEntries);
+                    Console.WriteLine("");
+                    d.DisplayListOfType("Discretionary Expense", listOfEntries);
+                    Console.WriteLine($"Ceiling of Discretionary expense: ${ceiling}");
+                    Console.WriteLine("");
+                    Console.WriteLine($"\nTotal expenses: ${totalExpense}");
+                    Console.WriteLine($"Total incomes: ${totalIncome}");
+                    Console.WriteLine($"Disposable Incomes: ${totalIncome - totalExpense}\n");
+
                 }
-                d.DisplayTotalFixedExpense(listOfEntries);
-                Console.WriteLine("");
-                d.DisplayListOfType("Flexible Expense", listOfEntries);
-                Console.WriteLine("");
-                d.DisplayListOfType("Discretionary Expense", listOfEntries);
-                Console.WriteLine("");
+                else if (user5Choice == "2")        //All the Income
+                {
+                    Console.Clear();
+                    Console.WriteLine("\nYour income are: ");
+                    d.DisplayListOfType("Fixed Income", listOfEntries);
+                    Console.WriteLine("");
+                    d.DisplayListOfType("Exceptional Income", listOfEntries);
+                    Console.WriteLine("");
+                    Console.WriteLine($"Total incomes: ${totalIncome}");
+                }
+                else if (user5Choice == "3")        //All the expenses
+                {
+                    Console.Clear();
+                    Console.WriteLine("\nYour expenses are: ");
+                    List<string> cat = new List<string>();
+                    Console.WriteLine("The Fixed Expenses are:");
+                
+                    foreach(string category in listOfCategories)
+                    {
+                        if (cat.Contains(category) == false )
+                        {
+                            d.DisplayListOfCategory(listOfEntries, category, totalFixedExpense);
+                            cat.Add(category);
+                        } 
+                    }
+                    d.DisplayTotalFixedExpense(listOfEntries);
+                    Console.WriteLine("");
+                    d.DisplayListOfType("Flexible Expense", listOfEntries);
+                    Console.WriteLine("");
+                    d.DisplayListOfType("Discretionary Expense", listOfEntries);
+                    Console.WriteLine("");
+                    Console.WriteLine($"Total expenses: ${totalExpense}");
+
+                }
+                else if (user5Choice == "4")        //Resume
+                {
+                    Console.Clear();
+                    Console.WriteLine($"\nTotal expenses: ${totalExpense}");
+                    Console.WriteLine($"Total incomes: ${totalIncome}");
+                    Console.WriteLine($"Disposable Incomes: ${totalIncome - totalExpense}\n");
+                    Console.WriteLine($"Ceiling of Discretionary expense: ${ceiling}");
+                    Console.WriteLine($"Total of Discretionary expense: ${d.TotalAmountType("Discretionary Expense", listOfEntries)}");                    
+                } 
+                else        //Return to the initial menu
+                {
+                }     
             }
             else if (userChoice == "4")     //Save Budget
             {
@@ -166,7 +221,7 @@ class Program
             {    
                 string user4Choice = "";
                 // menu
-                Console.WriteLine("\nThe types of entrance are:\n 1. Fixed Income \n 2. Exceptional Income \n 3. Fixed Expense \n 4. Flexible Expense \n 5. Discretionary Expense \n 6. Quit");
+                Console.WriteLine("\nThe types of entrance are:\n 1. Fixed Income \n 2. Exceptional Income \n 3. Fixed Expense \n 4. Flexible Expense \n 5. Discretionary Expense \n 6. Return to main menu");
                 Console.WriteLine("Wich type of entrance do you like to change? ");
                 // the choice of the user 
                 user4Choice = Console.ReadLine();
