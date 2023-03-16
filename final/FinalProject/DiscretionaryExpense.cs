@@ -1,16 +1,25 @@
 public class DiscretionaryExpense : Entry
 {
-   
+    private double _ceiling;
+
     public DiscretionaryExpense(string name, double amount) : base(name, amount)
     {
     }
 
-    public double ReturnCeiling()
+    public double GetCeiling()
+    {
+        return _ceiling;
+    }
+
+    public void SetCeiling(double ceiling)
+    {
+        _ceiling = ceiling;
+    }
+
+    public void MessageCeiling()
     {   
-        double ceiling;
         Console.WriteLine($"What is the ceiling of your Discretionary Expenses? ");
-        ceiling = double.Parse(Console.ReadLine());
-        return ceiling;  
+        SetCeiling(double.Parse(Console.ReadLine())); 
     }  
 
     public override string NewEntry(double totalExpense)

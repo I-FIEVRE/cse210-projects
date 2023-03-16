@@ -11,7 +11,7 @@ class Program
         double totalFixedExpense = 0;
         double totalExpense = 0;
         double totalIncome = 0;
-        double ceiling = 0;
+        double ceiling = 1;
         FixedExpense f1 = new FixedExpense("", "", 0);
         FlexibleExpense fl1 = new FlexibleExpense("", 0);
         DiscretionaryExpense d1 = new DiscretionaryExpense("", 0);
@@ -23,7 +23,7 @@ class Program
         { 
             stringOfTotal = $"{totalIncome}, {totalExpense}, {ceiling}";
             // menu appears each time 
-            Console.WriteLine("\nMenu Options: \n 1. New Expense \n 2. New Income \n 3. Display the Budget \n 4. Save Budget \n 5. Load Budget \n 6. Change an amount \n 7. Quit");
+            Console.WriteLine("\nMenu Options: \n 1. New Expense \n 2. New Income \n 3. Display the Budget \n 4. Save Budget \n 5. Load Budget \n 6. Change an amount  \n 7. Change the ceiling \n 8. Quit");
             Console.WriteLine("Select a choice from the menu: ");
             // the choice of the user 
             userChoice = Console.ReadLine();
@@ -54,9 +54,11 @@ class Program
                 }
                 else if (user2Choice == "3")        //New Discretionary Expense        
                 {
-                    if (ceiling == 0)
+                    if (ceiling == 1)
                     {
-                        ceiling = d1.ReturnCeiling(); //Choice of the ceiling by the user
+                        //Choice of the ceiling by the user
+                        d1.MessageCeiling();
+                        ceiling = d1.GetCeiling();
                     }
                     //before expense total<ceiling
                     if (d.TotalAmountType("Discretionary Expense", listOfEntries) < ceiling)
@@ -65,13 +67,12 @@ class Program
                         double total = d.TotalAmountType("Discretionary Expense", listOfEntries) + d1.GetAmount();
                         if (total > ceiling)        //the new total would be heigher than the ceiling
                         {
-                            Console.WriteLine($"\nThe amount is to heigh. You can only spend ${ceiling - total}.");
+                            Console.WriteLine($"\nThe amount is to heigh. You can only spend ${ceiling - d.TotalAmountType("Discretionary Expense", listOfEntries)}.");
                         }
                         else
                         {
                             listOfEntries.Add(d1.NewEntry(totalExpense));
                             totalExpense = d1.GetTotalExpense();
-                            Console.WriteLine(d1.NewEntry(totalExpense));
                             Console.WriteLine(""); 
                         }    
                     }
@@ -185,6 +186,7 @@ class Program
                     Console.WriteLine("");
                     d.DisplayListOfType("Discretionary Expense", listOfEntries);
                     d.DisplayTotalAmountType("Discretionary Expense", listOfEntries);
+                    Console.WriteLine($"Ceiling of Discretionary Expense: ${ceiling}");
                     Console.WriteLine("");
                     Console.WriteLine($"Total expenses: ${totalExpense}");
 
@@ -261,14 +263,20 @@ class Program
                 {
                 }
             }
-            else if (userChoice == "7")     //quit        
+            else if (userChoice == "7")
+            {
+                d1.MessageCeiling();
+                ceiling = d1.GetCeiling();
+                Console.WriteLine($"The new ceiling is: {ceiling}");
+            }
+            else if (userChoice == "8")     //quit        
             {
                 Console.WriteLine("Good Bye!\n"); 
             }
             else
             { // help when another word or character is written by the user
-                Console.WriteLine("You have to choose between 1, 2, 3, 4, 5, 6 or 7 "); 
+                Console.WriteLine("You have to choose between 1, 2, 3, 4, 5, 6, 7 or 8 "); 
             }
-        } while (!(userChoice == "7"));       
+        } while (!(userChoice == "8"));       
     }    
 }
