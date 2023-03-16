@@ -23,8 +23,7 @@ public class FixedExpense : Entry
     public void FirstMessage()
     {
         Console.WriteLine($"What is the category of your Fixed Expense? ");
-        _category = Console.ReadLine();
-        SetCategory(_category);
+        SetCategory(Console.ReadLine());
         _category = GetCategory();
     }
     public override string NewEntry(double totalExpense)

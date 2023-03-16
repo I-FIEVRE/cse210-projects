@@ -2,17 +2,6 @@ using System;
 
 public class Display
 {
-    private double _totalFixedExpense;
-
-    public double GetTotalFixedExpense()
-    {
-        return _totalFixedExpense;
-    }
-
-    public void SetTotalFixedExpense(double totalFixedExpense)
-    {
-        _totalFixedExpense = totalFixedExpense;
-    }
     public string GetKindEntryPart(string entry)
     {
         string[] parts = entry.Split(": ");
@@ -34,7 +23,6 @@ public class Display
         int i = 1;
         string lEntry = "";
         string nEntry = "";
-        double totalAmount = 0;
         foreach (string entry in listOfEntries)
         {
             nEntry = GetKindEntryPart(entry);
@@ -42,12 +30,10 @@ public class Display
             string[] items = lEntry.Split(", "); 
             if (nEntry.ToLower() == typeOfEntry.ToLower())
             {
-                Console.WriteLine($"{items[0]}: ${items[1]}");
-                totalAmount = totalAmount + double.Parse(items[1]);   
+                Console.WriteLine($"{items[0]}: ${items[1]}");  
             }
             i++;
-        }
-        Console.WriteLine($"The total of the {typeOfEntry}s is : ${totalAmount}");   
+        } 
     }
     
     public double TotalAmountType (string typeOfEntry, List<string> listOfEntries)
@@ -63,30 +49,23 @@ public class Display
             string[] items = lEntry.Split(", "); 
             if (nEntry.ToLower() == typeOfEntry.ToLower())
             {
-                totalAmount = totalAmount + double.Parse(items[1]);   
+                if (typeOfEntry.ToLower() == "fixed expense")
+                {
+                    totalAmount = totalAmount + double.Parse(items[2]);
+                }
+                else
+                {
+                    totalAmount = totalAmount + double.Parse(items[1]);
+                }   
             }
             i++;
         }
         return totalAmount;
     }
-    public void DisplayTotalFixedExpense(List<string> entriesOfExpenses)
+
+    public void DisplayTotalAmountType(string typeOfEntry, List<string> listOfEntries)
     {
-        int i = 1;
-        string lEntry = "";
-        string nEntry = "";
-        double totalAmount = 0;
-        foreach (string entry in entriesOfExpenses)
-        {
-            nEntry = GetKindEntryPart(entry);
-            lEntry = GetEntryDetailPart(entry);
-            string[] items = lEntry.Split(", "); 
-            if (nEntry.ToLower() == "fixed expense")
-            {
-                totalAmount = totalAmount + double.Parse(items[2]);   
-            }
-            i++;
-        }
-        Console.WriteLine($"The total of the Fixed Expenses is : ${totalAmount}"); 
+        Console.WriteLine($"Total of {typeOfEntry}: ${TotalAmountType(typeOfEntry, listOfEntries)}");
     }
     
     public void DisplayListOfCategory(List<string> listOfEntries, string category, double totalFixedExpense)
@@ -106,7 +85,7 @@ public class Display
             }
             i++;
         }
-        Console.WriteLine($"The total of  {category.ToUpper()} expense is : ${totalAmount}"); 
+        Console.WriteLine($"Total of {category.ToUpper()} expense: ${totalAmount}"); 
     }
     
 }  

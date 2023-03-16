@@ -9,7 +9,6 @@ class Program
         List<string> listOfCategories = new List<string>();
         string  stringOfTotal = "";
         double totalFixedExpense = 0;
-        //double totalDiscExpense = 0;
         double totalExpense = 0;
         double totalIncome = 0;
         double ceiling = 0;
@@ -123,8 +122,10 @@ class Program
                     Console.Clear();
                     Console.WriteLine("\nYour Budget is: ");
                     d.DisplayListOfType("Fixed Income", listOfEntries);
+                    d.DisplayTotalAmountType("Fixed Income", listOfEntries);
                     Console.WriteLine("");
                     d.DisplayListOfType("Exceptional Income", listOfEntries);
+                    d.DisplayTotalAmountType("Exceptional Income", listOfEntries);
                     Console.WriteLine("");
                     List<string> cat = new List<string>();
                     Console.WriteLine("The Fixed Expenses are:");
@@ -136,12 +137,14 @@ class Program
                             cat.Add(category);
                         } 
                     }
-                    d.DisplayTotalFixedExpense(listOfEntries);
+                    d.DisplayTotalAmountType("Fixed Expense", listOfEntries);
                     Console.WriteLine("");
                     d.DisplayListOfType("Flexible Expense", listOfEntries);
+                    d.DisplayTotalAmountType("Flexible Expense", listOfEntries);
                     Console.WriteLine("");
                     d.DisplayListOfType("Discretionary Expense", listOfEntries);
-                    Console.WriteLine($"Ceiling of Discretionary expense: ${ceiling}");
+                    d.DisplayTotalAmountType("Discretionary Expense", listOfEntries);
+                    Console.WriteLine($"Ceiling of Discretionary Expense: ${ceiling}");
                     Console.WriteLine("");
                     Console.WriteLine($"\nTotal expenses: ${totalExpense}");
                     Console.WriteLine($"Total incomes: ${totalIncome}");
@@ -153,8 +156,10 @@ class Program
                     Console.Clear();
                     Console.WriteLine("\nYour income are: ");
                     d.DisplayListOfType("Fixed Income", listOfEntries);
+                    d.DisplayTotalAmountType("Fixed Income", listOfEntries);
                     Console.WriteLine("");
                     d.DisplayListOfType("Exceptional Income", listOfEntries);
+                    d.DisplayTotalAmountType("Exceptional Income", listOfEntries);
                     Console.WriteLine("");
                     Console.WriteLine($"Total incomes: ${totalIncome}");
                 }
@@ -173,11 +178,13 @@ class Program
                             cat.Add(category);
                         } 
                     }
-                    d.DisplayTotalFixedExpense(listOfEntries);
+                    d.DisplayTotalAmountType("Fixed Expense", listOfEntries);
                     Console.WriteLine("");
                     d.DisplayListOfType("Flexible Expense", listOfEntries);
+                    d.DisplayTotalAmountType("Flexible Expense", listOfEntries);
                     Console.WriteLine("");
                     d.DisplayListOfType("Discretionary Expense", listOfEntries);
+                    d.DisplayTotalAmountType("Discretionary Expense", listOfEntries);
                     Console.WriteLine("");
                     Console.WriteLine($"Total expenses: ${totalExpense}");
 
@@ -188,8 +195,8 @@ class Program
                     Console.WriteLine($"\nTotal expenses: ${totalExpense}");
                     Console.WriteLine($"Total incomes: ${totalIncome}");
                     Console.WriteLine($"Disposable Incomes: ${totalIncome - totalExpense}\n");
-                    Console.WriteLine($"Ceiling of Discretionary expense: ${ceiling}");
-                    Console.WriteLine($"Total of Discretionary expense: ${d.TotalAmountType("Discretionary Expense", listOfEntries)}");                    
+                    Console.WriteLine($"Ceiling of Discretionary Expense: ${ceiling}");                   
+                    d.DisplayTotalAmountType("Discretionary Expense", listOfEntries);
                 } 
                 else        //Return to the initial menu
                 {

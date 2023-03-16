@@ -43,33 +43,9 @@ public class Load
         string line = lines[0];
         string[] items = line.Split(", ");
         ceiling = double.Parse(items[2]);
-        Console.WriteLine(ceiling);
         return ceiling;
     }
 
-     public double ReturnTotalDiscExpense(List<string> listOfEntries, string userFileName)
-    {
-        string[] lines = System.IO.File.ReadAllLines(userFileName);
-        int i = 1; 
-        double tot = 0;           
-        foreach (string line in lines)
-        {
-            if (i > 2)
-            {
-                Display d = new Display();
-                string nEntry = d.GetKindEntryPart(line);
-                string lEntry = d.GetEntryDetailPart(line);
-                string stringEntry = $"{nEntry}: {lEntry}";
-                string[] items = lEntry.Split(", ");
-               if (nEntry == "Discretionary Expense")
-                {          
-                    tot = double.Parse(items[3]);
-                }
-            }
-            i++;
-        }
-        return tot;
-    }
 
     public double ReturnTotalExpense(string userFileName)
     {
@@ -79,7 +55,6 @@ public class Load
         string line = lines[0];
         string[] items = line.Split(", ");
         TotalExpense = double.Parse(items[1]);
-        Console.WriteLine(TotalExpense);
         return TotalExpense;
     }    
 
@@ -91,8 +66,6 @@ public class Load
         string line = liness[0];
         string[] items = line.Split(", ");
         TotalIncome = double.Parse(items[0]);;
-        Console.WriteLine(line);
-        Console.WriteLine(TotalIncome);
         return TotalIncome;
     }    
 }    
