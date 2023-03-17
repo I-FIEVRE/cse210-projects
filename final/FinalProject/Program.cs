@@ -41,7 +41,10 @@ class Program
                 {
                     Console.WriteLine("");
                     f1.FirstMessage();
-                    listOfCategories.Add(f1.GetCategory());
+                    if (!listOfCategories.Contains(f1.GetCategory()))
+                    {
+                        listOfCategories.Add(f1.GetCategory());
+                    }
                     listOfEntries.Add(f1.NewEntry(totalExpense));
                     totalExpense = f1.GetTotalExpense();
                     Console.WriteLine("");
