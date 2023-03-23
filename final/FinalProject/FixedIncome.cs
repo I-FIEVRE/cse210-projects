@@ -8,7 +8,7 @@ public class FixedIncome : Entry
     {
         string fIncome = "";
         Message("Fixed Income");
-        FixedIncome income = new FixedIncome(GetName(), GetAmount());
+        //FixedIncome income = new FixedIncome(GetName(), GetAmount());
         fIncome = $"Fixed Income: {GetName()}, {GetAmount().ToString()}";
         SetTotalIncome(totalIncome + GetAmount());
         return fIncome;
@@ -36,6 +36,6 @@ public class FixedIncome : Entry
             }
         } 
         return fIncome;  
-    }  
-   
+    }
+
 }

@@ -62,5 +62,7 @@ public abstract class Entry
         Console.WriteLine($"What is the amount associated with this {typeOfEntry}? ");
         SetAmount( double.Parse(Console.ReadLine()));    
     }   
+
+    
   
 }

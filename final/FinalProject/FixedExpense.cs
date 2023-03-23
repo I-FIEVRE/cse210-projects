@@ -52,12 +52,12 @@ public class FixedExpense : Entry
             {
                 FixedExpense expense = new FixedExpense(items[0], items[1], GetAmount());
                 fExpense = $"Fixed Expense: {items[0]}, {items[1]}, {GetAmount().ToString()}";
-                expense.SetTotalExpense(total - double.Parse(items[2]) + GetAmount());
+                SetTotalExpense(total - double.Parse(items[2]) + GetAmount());
                 listOfEntries.Remove(entry);
                 break;
             }
         } 
         return fExpense;     
     }
-    
+
 }

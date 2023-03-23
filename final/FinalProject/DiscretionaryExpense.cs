@@ -37,7 +37,6 @@ public class DiscretionaryExpense : Entry
         string lEntry = "";
         string nEntry = "";
         string dExpense = "";
-        Message("Discretionary Expense");
         foreach (string entry in listOfEntries)
         {
             nEntry = d.GetKindEntryPart(entry);
@@ -50,9 +49,9 @@ public class DiscretionaryExpense : Entry
                 SetTotalExpense(total - double.Parse(items[1]) + GetAmount());
                 listOfEntries.Remove(entry);
                 break;
-            }
+            }             
         } 
         return dExpense;     
     }
-    
+
 }

@@ -40,5 +40,5 @@ public class FlexibleExpense : Entry
         } 
         return fExpense;  
     }
-    
+
 }

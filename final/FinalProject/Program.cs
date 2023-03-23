@@ -259,14 +259,37 @@ class Program
                 }
                 else if (user4Choice == "5")    //change Discretionary Expense        
                 {
-                    listOfEntries.Add(d1.NewAmount(listOfEntries, totalExpense));
-                    totalExpense = d1.GetTotalExpense();
+                    string lEntry = "";
+                    string nEntry = "";
+                    double oldAmount = 0;
+                    d1.Message("Discretionary Expense");
+                    foreach (string entry in listOfEntries)
+                    {
+                        nEntry = d.GetKindEntryPart(entry);
+                        lEntry = d.GetEntryDetailPart(entry);
+                        string[] items = lEntry.Split(", "); 
+                        if (items[0].ToLower() == d1.GetName().ToLower())
+                        {
+                            oldAmount = double.Parse(items[1]);     //the old amount for the name
+                        }
+                    }        
+                    double total = d.TotalAmountType("Discretionary Expense", listOfEntries) - oldAmount + d1.GetAmount();
+                    if (total > ceiling)        //the new total would be heigher than the ceiling
+                    {
+                        Console.WriteLine($"\nThe amount is to heigh. You can only spend ${ceiling - d.TotalAmountType("Discretionary Expense", listOfEntries) + oldAmount}.");
+                    }
+                    else
+                    {
+                        listOfEntries.Add(d1.NewAmount(listOfEntries, totalExpense));
+                        totalExpense = d1.GetTotalExpense();
+                        Console.WriteLine(""); 
+                    }  
                 }
                 else        //return to the initial menu
                 {
                 }
             }
-            else if (userChoice == "7")
+            else if (userChoice == "7")     //change ceiling
             {
                 d1.MessageCeiling();
                 ceiling = d1.GetCeiling();
